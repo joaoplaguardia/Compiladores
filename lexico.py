@@ -50,12 +50,18 @@ def criar_token(lista_tokens: list, type: Tokens, lexeame: str, line: int) -> To
     lista_tokens.append(t)
 
 def main():
+
+    with open("teste.txt", "r") as f:
+        arquivo = f.read()
+
+
     lista_tokens = []
     estado = 0
     num_linha = 1
     USOU_ULTIMO = True
     i = 0
     lexema_temp =  ""
+    tamanho_do_arquivo = len(arquivo)
 
     while i < tamanho_do_arquivo:
         USOU_ULTIMO = True

@@ -37,6 +37,8 @@ class Tokens(Enum):
     FLOAT_CONST = auto()
     CHAR_LITERAL = auto()
     FMT_STRING = auto()
+    ERROR = auto()
+    EOF = auto()
 
 RESERVED = {
     "fn": Tokens.FUNCTION,
@@ -64,10 +66,7 @@ def criar_token(lista_tokens: list, type: Tokens, lexeame: str, line: int) -> To
     t = Token(type, lexeame, line)
     lista_tokens.append(t)
 
-def main():
-
-    with open("teste.txt", "r") as f:
-        arquivo = f.read()
+def lexico(codigo: str):
 
 
     lista_tokens = []
@@ -76,11 +75,11 @@ def main():
     USOU_ULTIMO = True
     i = 0
     lexema_temp =  ""
-    tamanho_do_arquivo = len(arquivo)
+    tamanho_do_arquivo = len(codigo)
 
     while i < tamanho_do_arquivo:
         USOU_ULTIMO = True
-        c = arquivo[i]
+        c = codigo[i]
 
         match estado:
             case 0:
@@ -146,7 +145,7 @@ def main():
                     lexema_temp = ""
                     estado = 0
                 else:
-                    # Tratar erro léxico
+                    criar_token(lista_tokens, Tokens.ERROR, lexema_temp, num_linha)
                     lexema_temp = ""
                     estado = 0
                     USOU_ULTIMO = False
@@ -166,3 +165,6 @@ def main():
 
         if USOU_ULTIMO:
             i += 1
+    
+    criar_token(lista_tokens, Tokens.EOF, "EOF", num_linha)
+    return lista_tokens

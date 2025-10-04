@@ -38,6 +38,21 @@ class Tokens(Enum):
     CHAR_LITERAL = auto()
     FMT_STRING = auto()
 
+RESERVED = {
+    "fn": Tokens.FUNCTION,
+    "main": Tokens.MAIN,
+    "let": Tokens.LET,
+    "int": Tokens.INT,
+    "float": Tokens.FLOAT,
+    "char": Tokens.CHAR,
+    "if": Tokens.IF,
+    "else": Tokens.ELSE,
+    "while": Tokens.WHILE,
+    "println": Tokens.PRINTLN,
+    "return": Tokens.RETURN
+
+}
+
 @dataclass
 class Token:
     type: Tokens
@@ -107,6 +122,10 @@ def main():
                 elif c == '!':
                     lexema_temp += c
                     estado = 2
+                elif c.isalpha():
+                    lexema_temp += c
+                    estado = 6
+                
             
             case 1:
                 if c == '>':
@@ -132,6 +151,18 @@ def main():
                     estado = 0
                     USOU_ULTIMO = False
                 
+            case 6:
+                if c.isalnum() or c == '_':
+                    lexema_temp += c
+                    estado = 6
+                else:
+                    if lexema_temp in RESERVED:
+                        criar_token(lista_tokens, RESERVED[lexema_temp], lexema_temp, num_linha)
+                    else:
+                        criar_token(lista_tokens, Tokens.ID, lexema_temp, num_linha)
+                    lexema_temp = ""
+                    estado = 0
+                    USOU_ULTIMO = False
 
         if USOU_ULTIMO:
             i += 1

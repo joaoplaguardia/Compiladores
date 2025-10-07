@@ -5,6 +5,3 @@ if __name__ == "__main__":
         code = f.read()
 
     tokens = lexico(code)
-
-    for token in tokens:
-        print(token)

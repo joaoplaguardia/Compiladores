@@ -1,0 +1,4 @@
+Token inválido '$' na linha 5
+Esperado Tokens.RBRACKET, mas encontrou Tokens.FMT_STRING (lexema='valor = %d', linha 12)
+Esperado 'function' no início de função, mas encontrou Tokens.RBRACE (lexema='}', linha 13)
+Token inválido '$' na linha 14

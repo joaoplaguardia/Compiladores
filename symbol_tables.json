@@ -1,0 +1,65 @@
+{
+  "soma": {
+    "function_name": "soma",
+    "ret_type": "int",
+    "entries": {
+      "x": {
+        "name": "x",
+        "datatype": "int",
+        "is_param": true,
+        "pos_param": 0,
+        "call_refs": []
+      },
+      "y": {
+        "name": "y",
+        "datatype": "int",
+        "is_param": true,
+        "pos_param": 1,
+        "call_refs": []
+      }
+    }
+  },
+  "main": {
+    "function_name": "main",
+    "ret_type": "void",
+    "entries": {
+      "a": {
+        "name": "a",
+        "datatype": "int",
+        "is_param": false,
+        "pos_param": -1,
+        "call_refs": []
+      },
+      "b": {
+        "name": "b",
+        "datatype": "int",
+        "is_param": false,
+        "pos_param": -1,
+        "call_refs": []
+      },
+      "c": {
+        "name": "c",
+        "datatype": "int",
+        "is_param": false,
+        "pos_param": -1,
+        "call_refs": []
+      },
+      "soma": {
+        "name": "soma",
+        "datatype": "error",
+        "is_param": false,
+        "pos_param": -1,
+        "call_refs": [
+          {
+            "name": "soma",
+            "num_args": 2,
+            "args": [
+              "b",
+              "c"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
